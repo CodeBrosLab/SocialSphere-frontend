@@ -2,17 +2,29 @@
 <html>
 
 <head>
-    <meta charset="UTF-8" />
-    <title>Redirecting...</title>
+    <meta charset="utf-8">
+    <title>Page Not Found</title>
     <script type="text/javascript">
-        const redirectTo = sessionStorage.redirectPath || "/";
-        sessionStorage.removeItem("redirectPath");
-        location.href = "/" + "SocialSphere-frontend" + "/?redirect=" + redirectTo;
+        const APP_BASE_PATH = '/SocialSphere-frontend/';
+
+        const requestedFullPath = window.location.pathname;
+
+        let pathForReactRouter = '/';
+
+        if (requestedFullPath.startsWith(APP_BASE_PATH)) {
+            pathForReactRouter = requestedFullPath.substring(APP_BASE_PATH.length - 1);
+        } else {
+            pathForReactRouter = requestedFullPath;
+        }
+
+        sessionStorage.setItem('redirectUrl', pathForReactRouter + window.location.search);
+
+        window.location.replace(APP_BASE_PATH);
     </script>
 </head>
 
 <body>
-    Redirecting...
+    <p>Redirecting...</p>
 </body>
 
 </html>
