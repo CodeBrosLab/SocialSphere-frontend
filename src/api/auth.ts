@@ -1,4 +1,3 @@
-// src/api/auth.ts
 import { authUrl, backendUrl } from "../lib/constants";
 import { useNavigate } from "react-router-dom";
 
@@ -41,8 +40,8 @@ export const registerUser = async (userData: {
    return data;
 };
 
-// src/lib/tryRefreshToken.ts
 export const tryRefreshToken = async (): Promise<string | null> => {
+  
    const refreshToken = localStorage.getItem("refreshToken");
    if (!refreshToken) return null;
  
@@ -86,7 +85,7 @@ export const apiFetch = async (url: string, options: RequestInit = {}): Promise<
     },
   });
 
-  if (res.status === 401) {
+  if (res.status === 401 || res.status === 403 || res.status === 500) {
     // Try to refresh the token
     const newToken = await tryRefreshToken();
     if (newToken) {
