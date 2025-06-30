@@ -20,25 +20,19 @@ function App() {
          <NavProvider>
             <RedirectHandler />
             <Routes>
-
                <Route path="/sign-up" element={<SignUp />} />
                <Route path="/sign-in" element={<SignIn />} />
-
                <Route element={<ProtectedRoute />}>
-
                   <Route path="/" element={<Home />}>
-
                      <Route index element={<Feed />} />
                      <Route path="/feed" element={<Feed />} />
                      <Route path="/messages" element={<MessageList />} />
                      <Route path="/messages/:id" element={<Message />} />
                      <Route path="/discover" element={<Discover />} />
                      <Route path="/profile/:userId" element={<Profile />} />
-
                      <Route path="*" element={<NotFound />} />
                   </Route>
                </Route>
-
                <Route path="*" element={<NotFound />} />
             </Routes>
          </NavProvider>
