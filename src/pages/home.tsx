@@ -6,9 +6,7 @@ import { useProfile } from "../hooks/use-profile";
 export const Home = () => {
    // Get access token, decode it and get the user
    const {
-      data: profile,
       isLoading,
-      isError,
    } = useProfile();
 
    // If the user is loading, show a loading message
